@@ -1,0 +1,15 @@
+{
+	"name": "criticalfactory",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "95b68311-b972-497c-ac15-9d15128a5c10",
+		"tenantId": "debbafef-0734-4f15-acc7-efe44b1f4e1e"
+	}
+}
