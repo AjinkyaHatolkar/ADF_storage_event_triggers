@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "storage_event_trigger_pipeline",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "copy_source_to_target",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -75,7 +75,7 @@
 				]
 			},
 			{
-				"name": "Get Metadata1",
+				"name": "get_file_name",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
@@ -109,7 +109,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "get_file_name",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -123,7 +123,7 @@
 				"typeProperties": {
 					"variableName": "value of filename",
 					"value": {
-						"value": "@activity('Get Metadata1').output.childItems[0].name",
+						"value": "@activity('get_file_name').output.childItems[0].name",
 						"type": "Expression"
 					}
 				}
