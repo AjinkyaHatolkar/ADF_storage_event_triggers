@@ -20,10 +20,18 @@
 						"sqlReaderStoredProcedureName": "[dbo].[get_data]",
 						"storedProcedureParameters": {
 							"endTime": {
-								"type": "DateTime"
+								"type": "DateTime",
+								"value": {
+									"value": "@pipeline().parameters.endTime",
+									"type": "Expression"
+								}
 							},
 							"startTime": {
-								"type": "DateTime"
+								"type": "DateTime",
+								"value": {
+									"value": "@pipeline().parameters.startTime",
+									"type": "Expression"
+								}
 							}
 						},
 						"queryTimeout": "02:00:00",
