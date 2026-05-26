@@ -42,6 +42,14 @@
 		"storage_event_trigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b123cf92-bd60-4381-9f70-2b4dd2c087ff/resourceGroups/rg_critical/providers/Microsoft.Storage/storageAccounts/criticalstorage9"
+		},
+		"tumbling_window_trigger_properties_pipeline_parameters_startTime": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowStartTime"
+		},
+		"tumbling_window_trigger_properties_pipeline_parameters_endTime": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowEndTime"
 		}
 	},
 	"variables": {
@@ -555,6 +563,41 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/storage_event_trigger_pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tumbling_window_trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "tumbling window trigger",
+						"type": "PipelineReference"
+					},
+					"parameters": {
+						"startTime": "[parameters('tumbling_window_trigger_properties_pipeline_parameters_startTime')]",
+						"endTime": "[parameters('tumbling_window_trigger_properties_pipeline_parameters_endTime')]"
+					}
+				},
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Minute",
+					"interval": 15,
+					"startTime": "2026-01-01T00:00:00Z",
+					"endTime": "2026-01-08T00:00:00Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					},
+					"dependsOn": []
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/tumbling window trigger')]"
 			]
 		}
 	]

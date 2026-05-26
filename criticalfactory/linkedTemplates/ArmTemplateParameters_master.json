@@ -32,6 +32,12 @@
 		"storage_event_trigger_properties_typeProperties_scope": {
 			"value": "/subscriptions/b123cf92-bd60-4381-9f70-2b4dd2c087ff/resourceGroups/rg_critical/providers/Microsoft.Storage/storageAccounts/criticalstorage9"
 		},
+		"tumbling_window_trigger_properties_pipeline_parameters_startTime": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"tumbling_window_trigger_properties_pipeline_parameters_endTime": {
+			"value": "@trigger().outputs.windowEndTime"
+		},
 		"containerUri": {
 			"value": ""
 		},
